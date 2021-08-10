@@ -1,0 +1,62 @@
+<html>
+<body>
+<table align="center" border="1">
+    <tr>
+        <th>Search student</th>
+    </tr>
+    <tr>
+        <th>
+            <form action="{% url 'search_emp' %}" method="post">
+                {% csrf_token %}
+                <input type="text" placeholder="Search.." name="s1">
+                <button type="submit"><i class="fa fa-search"></i>Search</button>
+            </form>
+        </th>
+    </tr>
+</table>
+<br>
+<br>
+
+{% for re in res %}
+    <table align="center" border="1">
+    <tr>
+        <th>Student Details</th>
+    </tr>
+    <tr>
+        <th>Name:{{ re.name }}</th>
+    </tr>
+    <tr>
+        <th>Email:{{ re.email }}</th>
+    </tr>
+    <tr>
+        <th>Age:{{ re.age }}</th>
+    </tr>
+    <tr>
+        <th>Contact:{{ re.pno }}</th>
+    </tr>
+    <tr>
+        <th>DOB:{{ re.dob }}</th>
+    </tr>
+</table>
+
+{% endfor %}
+
+
+
+{% if res %}
+
+    {% for x in messages %}
+        <h1 style="text-align: center;background-color: red;color: white">{{ x }}</h1>
+    {% endfor %}
+{% endif %}
+
+
+{% if error %}
+    <h1 style="text-align: center;background-color: gold;color: aliceblue">{{ error }}</h1>
+{% endif %}
+
+<h3 class="btn btn-warning">
+    <a href="{% url 'main' %}">Register</a></h3>
+</body>
+
+</html>

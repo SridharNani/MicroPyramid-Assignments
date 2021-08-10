@@ -1,0 +1,6 @@
+Package                       Version
+----------------------------- ---------
+Django                        3.0.8
+pip                           21.2.1
+Python                        3.9.2
+sqlite                        Inbuilt
