@@ -1,0 +1,12 @@
+<html>
+<body>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<table align="center" border="2">
+    <tr><th colspan="5"> Student Details</th></tr>
+    <tr><th>{{ form.as_p }}</th></tr>
+    <tr><th colspan="5"><button type="submit">save</button></th></tr>
+</table>
+</form>
+</body>
+</html>

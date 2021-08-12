@@ -1,0 +1,28 @@
+{#<table align="center" border="2">#}
+{#    <tr>#}
+{#        <th colspan="5">All Student Details</th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <th>Name</th>#}
+{#        <th>Age</th>#}
+{#        <th>Contact</th>#}
+{#        <th>Email</th>#}
+{#        <th>Image</th>#}
+{#    </tr>#}
+{#    {% for x in object_list %}#}
+{#        <tr>#}
+{#            <th>{{ x.name }}</th>#}
+{#            <th>{{ x.age }}</th>#}
+{#            <th>{{ x.contact }}</th>#}
+{#            <th>{{ x.email }}</th>#}
+{#            <th><img src="{{ x.image.url }}" width="100" height="100"></th>#}
+{#        </tr>#}
+{##}
+{#    <tr>#}
+{#        <th><a href="{% url 'update'  x.id %}">Update</a></th>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <th><a href="{% url 'delete' x.id %}">Delete</a></th>#}
+{#    </tr>#}
+{#    {% endfor %}#}
+{#</table>#}
