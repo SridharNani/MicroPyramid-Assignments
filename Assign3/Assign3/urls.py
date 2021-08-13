@@ -25,7 +25,7 @@ from Assign3 import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('viewall/', views.viewall.as_view(), name='viewall'),
+    path('', views.viewall.as_view(), name='viewall'),
     path('add/',views.add.as_view(),name='add'),
     path('update/<int:pk>/',views.update.as_view(),name='update'),
     path('delete/<int:pk>/',views.delete.as_view(),name='delete')
