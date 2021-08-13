@@ -1,0 +1,41 @@
+{% load static %}
+<html>
+<body>
+{% if object_list %}
+
+    <table align="center" border="1">
+        <tr>
+            <th colspan="7">All Student Details</th>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Image</th>
+        </tr>
+        {% for student in object_list %}
+            <tr>
+                <td>{{ student.name }}</td>
+                <td>{{ student.age }}</td>
+                <td>{{ student.contact }}</td>
+                <td>{{ student.email }}</td>
+                <td><img src="{{ student.image.url }}" width="50" height="50"></td>
+
+                <td><a href="{% url 'update'  student.id %}">Update</a></td>
+
+                <td><a href="{% url 'delete' student.id %}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <h3 style="text-align: center;">No records found...</h3>
+{% endif %}
+
+
+<a href="{% url 'add' %}">
+    <h3 style="background: red;color: white;text-align: center">Add Student</h3>
+</a>
+
+</body>
+</html>
