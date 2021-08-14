@@ -1,0 +1,48 @@
+<html>
+    <body>
+    <table align="center" border="2">
+        <tr>
+            <th>Search Student</th>
+        </tr>
+        <tr>
+            <th>
+                <form action="{% url 'student' %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" placeholder="search" name="s1">
+                    <button type="submit">search</button>
+                </form>
+            </th>
+        </tr>
+    </table>
+    <h3>
+        <a href="{% url 'lecturer' %}">Lecturer</a>
+    </h3>
+    <h3>
+        <a href="{% url 'departmant' %}">Department</a>
+    </h3>
+
+    <table align="center" border="2">
+        <tr><th colspan="7">Student Details</th></tr>
+        <tr>
+            <th>Roll NO</th>
+            <th>Name</th>
+            <th>Eamil</th>
+            <th>Gender</th>
+            <th>lecturer</th>
+            <th>College</th>
+            <th>Department</th>
+        </tr>
+        {% for x in  sm%}
+            <tr>
+            <th>{{ x.rolln }}</th>
+            <th>{{ x.name}}</th>
+            <th>{{ x.email}}</th>
+            <th>{{ x.gender}}</th>
+            <th>{{ x.lec_name}}</th>
+            <th>{{ x.clg}}</th>
+            <th>{{ x.dep }}</th>
+            </tr>
+        {% endfor %}
+    </table>
+    </body>
+</html>

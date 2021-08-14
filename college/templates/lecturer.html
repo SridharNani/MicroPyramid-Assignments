@@ -1,0 +1,50 @@
+<html>
+<body>
+<table align="center" border="2">
+    <tr>
+        <th>Search Lecturer</th>
+    </tr>
+    <tr>
+        <th>
+            <form action="{% url 'lecturer' %}" method="post">
+                {% csrf_token %}
+                <input type="text" placeholder="search" name="s2">
+                <button type="submit">search</button>
+            </form>
+        </th>
+    </tr>
+</table>
+<br>
+<br>
+
+<table align="center" border="2">
+    <tr>
+        <th colspan="5">Lecturer Details</th>
+    </tr>
+    <tr>
+        <th>Id</th>
+        <th>College</th>
+        <th>Name</th>
+        <th>Subject</th>
+        <th>Department</th>
+    </tr>
+    {% for x in  res %}
+        <tr>
+            <th>{{ x.id }}</th>
+            <th>{{ x.clg }}</th>
+            <th>{{ x.name }}</th>
+            <th>{{ x.subject }}</th>
+            <th>
+            {% for d in dm%}
+            {{ d}}
+            {% endfor %}
+
+
+
+
+            </th>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
