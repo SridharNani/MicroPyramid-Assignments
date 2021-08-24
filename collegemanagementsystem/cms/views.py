@@ -16,6 +16,12 @@ def showindex(request):
 
 def login(request):
     if request.method=='GET':
+    #     un=request.POST.get('username')
+    #     pw1=request.POST.get('password1')
+    #     pw2=request.POST.get('password2')
+    #     type=request.POST.get('regi')
+    #     print(type)
+    #     form1=AuthenticationForm(username=un,password=pw1,password2=pw2)
         form1=AuthenticationForm()
         return render(request,'login.html',{'form':form1})
     else:
@@ -23,17 +29,48 @@ def login(request):
         if form.is_valid():
             username=form.cleaned_data.get('username')
             password=form.cleaned_data.get('password')
-            user=authenticate(username=username,password=password)
-            if user is not None:
-                loginUser(request,user)
-                return redirect('main')
-        else:
-            return render(request,'login.html',{'form':form})
+            type=request.POST.get('regi')
+            print(username)
+            print(password)
+            print(type)
+            if type == 'Lecturer':
+                print('-----------')
+
+                user=authenticate(username=username,password=password)
+                print('------')
+                if user is not None:
+                    loginUser(request, user)
+                    return redirect('addlect')
+                else:
+                    return render(request, 'login.html', {'form': form})
+
+
+
+            elif type == 'Student':
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    loginUser(request, user)
+                    return redirect('addstud')
+                else:
+                    return render(request, 'login.html', {'form': form})
+            # elif type == 'staff':
+            #     user=authenticate(username=username,password=password)
+            #     if user is not None:
+            #         loginUser(request, user)
+            #         return redirect('main')
+            #     else:
+            #         return render(request, 'login.html', {'form': form})
+            else:
+                return redirect('login')
+
+
+                # return redirect('student')
+
 
 
 
 def signup(request):
-    if request.method=='GET':
+    if request.method=='POST':
         form=UserCreationForm()
         return render(request,'signup.html',{'form':form})
     else:
@@ -47,40 +84,6 @@ def signup(request):
         else:
             return render(request,'signup.html',{'form':form})
 
-
-# def addlect(request):
-#     if request.user.is_authenticated:
-#         user=request.user
-#         print(user)
-#         form=LecturerForm(request.POST)
-#         if form.is_valid():
-#             print(form.cleaned_data)
-#             lecturer=form.save(commit=False)
-#             lecturer.user=user
-#             lecturer.save()
-#             print(lecturer)
-#             return redirect('main')
-#         else:
-#             return render(request,'lecturer.html',context={'form':form})
-#
-
-
-
-# def savelect(request):
-#     c=request.POST.get('clg_name')
-#     d=request.POST.get('dep_name')
-#     b=request.POST.get('bran_name')
-#     ln=request.POST.get('lect_name')
-#     ls=request.POST.get('lect_sal')
-#     s=request.POST.get('subject')
-#     tt=request.POST.get('time_table')
-#     lect=LecturerForm(request.POST)
-#     if lect.is_valid():
-#         Lecturer(clg_name=c,dep_name=d,bran_name=b,lect_name=ln,lect_sal=ls,subject=s,time_table=tt).save()
-#         return redirect('lecturer')
-#     else:
-#         return render(request,'lecturer.html',{'form':lect})
-#
 
 
 def signout(request):

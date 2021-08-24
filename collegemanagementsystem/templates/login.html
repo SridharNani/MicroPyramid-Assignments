@@ -12,7 +12,16 @@
       <div class="p-4">
         <form action="/login/" method="POST">
           {% csrf_token %}
-          {{form.as_p}}
+
+                    {{form.as_p}}
+
+            <label for="regi">User Type:</label>
+            <select name="regi" id="a1">
+                        <option value="Lecturer">Lecturer</option>
+                        <option value="Student">Student</option>
+                        <option value="Staff">Staff</option>
+                    </select>
+
           <hr>
           <input type="submit" value="Login" class="btn btn-info">
         </form>
