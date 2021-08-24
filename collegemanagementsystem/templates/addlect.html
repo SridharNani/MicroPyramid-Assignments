@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% include 'index.html' %}
+{% block content %}
+<div>
+  <div class="container pt-4">
+    <div class="row  p-0 mt-4">
+      <div class="col-lg-4 mx-auto shadow p-0">
+        <div class="alert alert-info">
+          <h2>Add New Lecturer</h2>
+        </div>
+        <div class="p-4">
+          <form action="{% url 'lecturer' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <hr>
+            <input type="submit" value="ADD" class="btn btn-info">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <h3 style="text-align: center; color: whitesmoke;background-color: red">
+    <a href="{% url 'lecturer' %}"> Show Lecturer Table</a>
+</h3>
+
+{% endblock %}

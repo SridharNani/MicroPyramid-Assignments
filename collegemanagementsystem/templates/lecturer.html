@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% include 'index.html' %}
+{% block content %}
+
+<br>
+    <br>
+
+<h3 style="text-align: center;background-color: blueviolet;color: white;padding: auto;
+box-sizing: border-box;border: lightslategray">Lecturer Information</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">College Name</th>
+      <th scope="col">DepartMent Name</th>
+      <th scope="col">Branch Name</th>
+      <th scope="col">Lecturer Name</th>
+      <th scope="col">Lecturer Salary</th>
+      <th scope="col">Subject</th>
+{#      <th scope="col">Date</th>#}
+      <th scope="col">Time Table</th>
+        <th>Action</th>
+    </tr>
+  </thead>
+
+
+    {% for x in lect %}
+  <tbody>
+    <tr>
+      <td>{{ x.clg_name }}</td>
+      <td>{{ x.dep_name }}</td>
+      <td>{{ x.bran_name }}</td>
+      <td>{{ x.lect_name }}</td>
+      <td>{{ x.lect_sal }}</td>
+      <td>{{ x.subject }}</td>
+      <td>{{ x.time_table.time_start }}-{{ x.time_table.time_end }}</td>
+        <td><a href="/deletelect/{{ x.id }}">🗑️</a></td>
+    </tr>
+  </tbody>
+    {% endfor %}
+</table>
+{% endblock %}

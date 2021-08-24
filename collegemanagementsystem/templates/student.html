@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% include 'index.html' %}
+{% block content %}
+<html>
+<body>
+
+<br>
+<br>
+<h3 style="text-align: center;background-color: greenyellow;color: white;padding: auto;
+box-sizing: border-box;border: lightslategray">Student  Information</h3>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">College Name</th>
+      <th scope="col">DepartMent Name</th>
+      <th scope="col">Branch Name</th>
+      <th scope="col">student Name</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Time Table</th>
+      <th scope="col">Fee</th>
+      <th scope="col">Result</th>
+        <th scope="col">Action</th>
+    </tr>
+  </thead>
+    {% for data in stu %}
+  <tbody>
+    <tr>
+      <td>{{ data.clg_name }}</td>
+      <td>{{ data.dep_name }}</td>
+      <td>{{ data.bran_name }}</td>
+      <td>{{ data.stu_name }}</td>
+      <td>{{ data.subject }}</td>
+      <td>{{ data.time_table.time_start }}-{{ data.time_table.time_end }}</td>
+        <td>{{ data.fee }}</td>
+        <td>{{ data.result }}</td>
+        <td><a href="/deletestud/{{ data.id }}">🗑️</a></td>
+
+    </tr>
+  </tbody>
+    {% endfor %}
+</table>
+{#    </form>#}
+</body>
+</html>
+{% endblock %}
