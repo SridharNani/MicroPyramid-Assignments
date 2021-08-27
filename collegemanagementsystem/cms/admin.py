@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import College,Depart,Branch,TimeTable,Salary,Student,Fee,Subject,Staff,Lecturer,Results
+from .models import College,Depart,Branch,TimeTable,Salary,Student,Fee,Subject,Staff,Lecturer,Results,User
 # Register your models here.
 admin.site.register(Student)
 admin.site.register(Lecturer)
@@ -12,4 +12,8 @@ admin.site.register(Depart)
 admin.site.register(TimeTable)
 admin.site.register(Fee)
 admin.site.register(Results)
-# admin.site.register(User)
+
+
+# admin.site.register(Results)
+# admin.site.register(Results)
+admin.site.register(User)

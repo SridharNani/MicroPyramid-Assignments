@@ -1,11 +1,13 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractUser
 
 
 
-# class User(AbstractBaseUser):
-#     is_student=models.BooleanField(default=False)
-#     is_lecturer=models.BooleanField(default=False)
+class User(AbstractUser):
+    is_student=models.BooleanField(default=False)
+    is_lecturer=models.BooleanField(default=False)
+    first_name=models.CharField(max_length=30)
+    last_name=models.CharField(max_length=30)
 
 
 
@@ -35,11 +37,6 @@ class Branch(models.Model):
         return self.bran_name
 
 class TimeTable(models.Model):
-    # id = models.IntegerField(primary_key=True)
-    # clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
-    # dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
-    # bran_name = models.ForeignKey(Branch, on_delete=models.CASCADE)
-    # subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     date=models.DateField()
     time_start = models.TimeField()
     time_end = models.TimeField()
@@ -64,12 +61,7 @@ class Fee(models.Model):
 
 
 class Subject(models.Model):
-    # clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
-    # dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
-    # stu_name = models.OneToOneField(Student, on_delete=models.CASCADE)
     sub_name = models.CharField(max_length=20)
-    # time_table = models.ForeignKey(TimeTable, on_delete=models.CASCADE)
-    # fee=models.ForeignKey(Fee,on_delete=models.CASCADE)
 
     def __str__(self):
        return self.sub_name
@@ -83,10 +75,6 @@ results_choices=(
 )
 
 class Results(models.Model):
-    # clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
-    # dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
-    # stu_name = models.OneToOneField(Student, on_delete=models.CASCADE)
-    # subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     result = models.CharField(max_length=12,choices=results_choices)
 
     def __str__(self):
@@ -94,6 +82,7 @@ class Results(models.Model):
 
 
 class Student(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
     bran_name=models.ForeignKey(Branch,on_delete=models.CASCADE)
@@ -110,6 +99,7 @@ class Student(models.Model):
 
 
 class Staff(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     staff_salary = models.OneToOneField(Salary, on_delete=models.CASCADE)
@@ -119,6 +109,7 @@ class Staff(models.Model):
 
 
 class Lecturer(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
     bran_name = models.ForeignKey(Branch, on_delete=models.CASCADE)
@@ -132,54 +123,3 @@ class Lecturer(models.Model):
 
 
 
-
-# class Exams(models.Model):
-#     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
-#     dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
-#     stu_name = models.OneToOneField(Student, on_delete=models.CASCADE)
-#     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
-#     time_table = models.ForeignKey(TimeTable, on_delete=models.CASCADE)
-#
-
-# class TimeTable(models.Model):
-#     id = models.IntegerField(primary_key=True)
-#     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
-#     dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
-#     bran_name = models.ForeignKey(Branch, on_delete=models.CASCADE)
-#     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
-#     time_start = models.TimeField()
-#     time_end = models.TimeField()
-
-
-# results_choices = [
-#     ('Above 90.00'  'Grade A'),
-#     ('81.00 - 90.00' 'Grade B2'),
-#     ('61.00 - 80.00'  'Grade C1'),
-#     ('41.00 - 60.00'  'Grade C2'),
-#     ('35.00 - 40.00'  'Grade D'),
-#     ('21 - 35'  'E1'),
-#     ('Below 21 - E2'  'Needs Improvement'),
-# ]
-
-
-
-# class Fee(models.Model):
-#     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
-#     dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
-#     stu_name = models.OneToOneField(Student, on_delete=models.CASCADE)
-#     fee = models.IntegerField(max_length=20)
-#
-#
-# class CollegeFee(models.Model):
-#     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
-#     dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
-#     stu_name = models.OneToOneField(Student, on_delete=models.CASCADE)
-#     fee = models.ForeignKey(Fee, on_delete=models.CASCADE)
-#
-#
-# class ExamFee(models.Model):
-#     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
-#     dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
-#     stu_name = models.OneToOneField(Student, on_delete=models.CASCADE)
-#     fee = models.ForeignKey(Fee, on_delete=models.CASCADE)
-#

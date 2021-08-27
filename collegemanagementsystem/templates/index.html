@@ -2,9 +2,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% load static %}
-    <img src="{% static 'images/susan-q-yin-2JIvboGLeho-unsplash.jpg' %}" height="550" width="1536">
+{#    {% load static %}#}
+{#    <img src="{% static 'images/susan-q-yin-2JIvboGLeho-unsplash.jpg' %}" height="550" width="1536">#}
     <h3 style="text-align: center">Welcome To Home Page</h3>
 
+{#<p class="lead">Sign up for a free account</p>#}
+  <p class="lead">Select below the type of account you want to create</p>
+  <a href="{% url 'studsignup' %}" class="btn btn-student btn-lg">I'm a student</a>
+
+  <a href="{% url 'lsignup' %} " class="btn btn-lecturer btn-lg" >I'm a teacher</a>
 
 {% endblock %}

@@ -10,6 +10,7 @@ box-sizing: border-box;border: lightslategray">Lecturer Information</h3>
 <table class="table">
   <thead>
     <tr>
+        <th scope="col">user</th>
       <th scope="col">College Name</th>
       <th scope="col">DepartMent Name</th>
       <th scope="col">Branch Name</th>
@@ -26,6 +27,7 @@ box-sizing: border-box;border: lightslategray">Lecturer Information</h3>
     {% for x in lect %}
   <tbody>
     <tr>
+        <td>{{ x.user }}</td>
       <td>{{ x.clg_name }}</td>
       <td>{{ x.dep_name }}</td>
       <td>{{ x.bran_name }}</td>

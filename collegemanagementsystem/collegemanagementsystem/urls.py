@@ -18,20 +18,25 @@ from django.contrib import admin
 from django.urls import path
 
 from cms import views
+# from cms.views import studentsignup,lectsignup
 from collegemanagementsystem import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.showindex,name='main'),
     path('login/',views.login,name='login'),
-    path('signup/',views.signup,name='signup'),
 
+    path('lsignup/',views.lectsignup.as_view(),name='lsignup'),
+    path('stsignup/', views.studentsignup.as_view(), name='studsignup'),
     #lecturer
+
     path('addlect/',views.addlect,name='addlect'),
     path('lecturer/',views.lecturer,name='lecturer'),
     path('deletelect/<int:id>',views.deletelect,name='deletelect'),
 
     #Student
+
     path('addstud/',views.addstud,name='addstud'),
     path('student/',views.student,name='student'),
     path('deletestud/<int:id>',views.deletestud,name='deletestud'),

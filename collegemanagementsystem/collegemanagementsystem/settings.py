@@ -26,6 +26,7 @@ SECRET_KEY = '56t*tcpm1j44j7)(gxz4#$2*093cly&%nrq1k5mj9mbe_!!840'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL='cms.User'
 
 
 # Application definition
