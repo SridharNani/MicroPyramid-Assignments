@@ -82,7 +82,7 @@ class Results(models.Model):
 
 
 class Student(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
     bran_name=models.ForeignKey(Branch,on_delete=models.CASCADE)
@@ -99,7 +99,7 @@ class Student(models.Model):
 
 
 class Staff(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     staff_salary = models.OneToOneField(Salary, on_delete=models.CASCADE)
@@ -109,7 +109,7 @@ class Staff(models.Model):
 
 
 class Lecturer(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE,primary_key=True)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
     bran_name = models.ForeignKey(Branch, on_delete=models.CASCADE)

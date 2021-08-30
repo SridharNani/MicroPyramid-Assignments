@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 
 from cms import views
-# from cms.views import studentsignup,lectsignup
+from cms.views import studentsignup,lectsignup
 from collegemanagementsystem import settings
 
 

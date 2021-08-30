@@ -1,4 +1,4 @@
-from .models import Lecturer,Student,User
+from .models import Lecturer,Student,User,Fee
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
@@ -31,10 +31,10 @@ class LecturerSignupForm(UserCreationForm):
         model = User
 
     @transaction.atomic
-    def save(self):
+    def save(self,commit=True):
         user=super().save(commit=False)
         user.is_lecturer=True
-        user.is_staff=True
+        # user.is_staff=True
         user.name=self.cleaned_data.get('name')
         user.designation=self.cleaned_data.get('designation')
         user.save()
@@ -47,9 +47,16 @@ class LecturerSignupForm(UserCreationForm):
 class LecturerForm(forms.ModelForm):
     class Meta:
         model=Lecturer
-        fields=['clg_name','dep_name','bran_name','lect_name','lect_sal','subject','time_table']
+        # fields=['clg_name','dep_name','bran_name','lect_name','lect_sal','subject','time_table']
+        fields='__all__'
 
 class StudentForm(forms.ModelForm):
     class Meta:
         model=Student
-        fields=['clg_name','dep_name','bran_name','stu_name','subject','time_table','fee','result']
+        fields='__all__'
+        # fields=['clg_name','dep_name','bran_name','stu_name','subject','time_table','fee','result']
+
+class FeeForm(forms.ModelForm):
+    class Meta:
+        model=Fee
+        fields='__all__'
