@@ -34,9 +34,20 @@
                     </li>
                 {% elif user.is_student %}
                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'lecturer' %}">Lecturer</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'addstud' %}">Student</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'signout' %}">Logout</a>
+                    </li>
+
+                {% elif user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'student' %}">Student</a>
+                    </li>
+                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'signout' %}">Logout</a>
                     </li>
 

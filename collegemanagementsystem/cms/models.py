@@ -6,8 +6,8 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     is_student=models.BooleanField(default=False)
     is_lecturer=models.BooleanField(default=False)
-    first_name=models.CharField(max_length=30)
-    last_name=models.CharField(max_length=30)
+    # first_name=models.CharField(max_length=30)
+    # last_name=models.CharField(max_length=30)
 
 
 
@@ -52,12 +52,12 @@ class Salary(models.Model):
         return str(self.salary)
 
 
-class Fee(models.Model):
-    coll_fee=models.IntegerField()
-    exam_fee=models.IntegerField()
-
-    def __str__(self):
-        return f'{self.coll_fee}{self.exam_fee}'
+# class Fee(models.Model):
+#     coll_fee=models.IntegerField()
+#     exam_fee=models.IntegerField()
+#
+#     def __str__(self):
+#         return f'{self.coll_fee}{self.exam_fee}'
 
 
 class Subject(models.Model):
@@ -82,14 +82,15 @@ class Results(models.Model):
 
 
 class Student(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
     bran_name=models.ForeignKey(Branch,on_delete=models.CASCADE)
     stu_name = models.CharField(max_length=20)
     subject=models.ForeignKey(Subject,on_delete=models.CASCADE)
     time_table = models.ForeignKey(TimeTable, on_delete=models.CASCADE)
-    fee = models.ForeignKey(Fee,on_delete=models.CASCADE)
+    coll_fee = models.IntegerField()
+    exam_fee = models.IntegerField()
     result=models.ForeignKey(Results,on_delete=models.CASCADE)
 
 
@@ -99,7 +100,7 @@ class Student(models.Model):
 
 
 class Staff(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     staff_salary = models.OneToOneField(Salary, on_delete=models.CASCADE)
@@ -109,7 +110,10 @@ class Staff(models.Model):
 
 
 class Lecturer(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
+
+
+    student=models.ForeignKey(Student,on_delete=models.CASCADE)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
     bran_name = models.ForeignKey(Branch, on_delete=models.CASCADE)

@@ -1,4 +1,4 @@
-from .models import Lecturer,Student,User,Fee
+from .models import Lecturer,Student,User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
@@ -53,10 +53,10 @@ class LecturerForm(forms.ModelForm):
 class StudentForm(forms.ModelForm):
     class Meta:
         model=Student
-        fields='__all__'
+        fields ='__all__'
         # fields=['clg_name','dep_name','bran_name','stu_name','subject','time_table','fee','result']
 
-class FeeForm(forms.ModelForm):
-    class Meta:
-        model=Fee
-        fields='__all__'
+# class FeeForm(forms.ModelForm):
+#     class Meta:
+#         model=Fee
+#         fields='__all__'

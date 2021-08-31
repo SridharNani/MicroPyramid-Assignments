@@ -19,7 +19,8 @@ box-sizing: border-box;border: lightslategray">Student  Information</h3>
       <th scope="col">student Name</th>
       <th scope="col">Subject</th>
       <th scope="col">Time Table</th>
-      <th scope="col">Fee</th>
+      <th scope="col"> coll Fee</th>
+      <th scope="col"> Exam Fee</th>
       <th scope="col">Result</th>
         <th scope="col">Action</th>
     </tr>
@@ -33,7 +34,8 @@ box-sizing: border-box;border: lightslategray">Student  Information</h3>
       <td>{{ data.stu_name }}</td>
       <td>{{ data.subject }}</td>
       <td>{{ data.time_table.time_start }}-{{ data.time_table.time_end }}</td>
-        <td>{{ data.fee }}</td>
+        <td>{{ data.coll_fee }}</td>
+        <td>{{ data.exam_fee }}</td>
         <td>{{ data.result }}</td>
         <td><a href="/deletestud/{{ data.id }}">🗑️</a></td>
 

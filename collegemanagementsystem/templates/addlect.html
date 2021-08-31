@@ -9,7 +9,7 @@
           <h2>Add New Lecturer</h2>
         </div>
         <div class="p-4">
-          <form action="{% url 'lecturer' %}" method="POST">
+          <form action="{% url 'addstud' %}" method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <hr>

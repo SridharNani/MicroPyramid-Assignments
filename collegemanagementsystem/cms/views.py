@@ -4,7 +4,7 @@ from .models import Lecturer,Student,User
 from django.contrib.auth import authenticate,login as loginUser,logout
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .forms import StudentSignupForm,LecturerForm,StudentForm,LecturerSignupForm,FeeForm
+from .forms import StudentSignupForm,LecturerForm,StudentForm,LecturerSignupForm
 from django.views.generic import CreateView
 
 
@@ -45,6 +45,8 @@ class lectsignup(CreateView):
 
 # @login_required(login_url='login')
 def login(request):
+    if request.user.is_authenticated():
+        user=request.user
     if request.method=='POST':
         form=AuthenticationForm(data=request.POST)
         if form.is_valid():
@@ -74,14 +76,14 @@ def signout(request):
 
 # @login_required(login_url='login')
 def addlect(request):
-    if request.user.is_authenticated:
-        user=request.user
-        print(user)
+    # if request.user.is_authenticated:
+    #     user=request.user
+    #     print(user)
         lf=LecturerForm(request.POST)
         if lf.is_valid():
             print(lf.cleaned_data)
             Lecturer=lf.save(commit=False)
-            Lecturer.user=user
+            # Lecturer.user=user
             Lecturer.save()
             print(Lecturer)
             return redirect('addlect')
@@ -100,29 +102,33 @@ def deletelect(request,id):
 
 # @login_required(login_url='login')
 def addstud(request):
+    # import pdb;pdb.set_trace()
     if request.user.is_authenticated:
         sf = StudentForm(request.POST)
-        ff=FeeForm(request.POST)
+
+
+        # ff=FeeForm(request.POST)
+
         if request.method == 'POST':
             user=request.user
             print(user)
-            sf=StudentForm(request.POST)
-            ff=FeeForm(request.POST)
             if sf.is_valid():
-                sn = sf.cleaned_data['stu_name']
-                print(sn)
+                print('gig')
                 sf.save()
+                return redirect('student')
 
-                if ff.is_valid():
-                    ff.save()
-                                    # Student.user=user
-                # Student.save()
-                # print(Student)
-                return redirect('addstud')
+
+
+
+
+
+    #                                 Student.user=user
+    #             Student.save()
+
             else:
-                return render(request,'addstu.html',context={'form':sf,'ff':ff})
+                return render(request,'addstu.html',context={'form':sf})
         else:
-            return render(request, 'addstu.html', context={'form': sf,'ff':ff})
+            return render(request, 'addstu.html', context={'form': sf})
 
 
 def student(request):

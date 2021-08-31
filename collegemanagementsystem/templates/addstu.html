@@ -12,62 +12,68 @@
         <div class="p-4">
           <form action="{% url 'addstud' %}" method="POST">
             {% csrf_token %}
+
+
+
 {#            {{ form.user }}#}
-{#              {{ form.fee.coll_fee }}#}
+
+              {{ form }}
+
+
 {#              {{ form.fee.exam_fee }}#}
 {#              #}
-              <table>
-                  <tr>
-                      <th>{{ form.user.label }}</th>
-                      <th>{{ form.user }}</th>
-                  </tr>
-                  <tr>
-                      <th>{{ form.clg_name.label }}</th>
-                      <th>{{ form.clg_name }}</th>
-                  </tr>
-
-                  <tr>
-                      <th>{{ form.dep_name.label }}</th>
-                      <th>{{ form.dep_name }}</th>
-                  </tr>
-                  <tr>
-                      <th>{{ form.bran_name.label }}</th>
-                      <th>{{ form.bran_name }}</th>
-                  </tr>
-<tr>
-                      <th>{{ form.stu_name.label }}</th>
-                      <th>{{ form.stu_name }}</th>
-                  </tr>
-
-                    <tr>
-                      <th>{{ form.subject.label }}</th>
-                      <th>{{ form.subject }}</th>
-                  </tr><tr>
-                      <th>{{ form.time_table.label }}</th>
-                      <th>{{ form.time_table }}</th>
-                  </tr>
-                  <tr>
-                      {{ ff }}
-                  </tr>
+{#              <table>#}
+{#                  <tr>#}
+{#                      <th>{{ form.user.label }}</th>#}
+{#                      <th>{{ form.user }}</th>#}
+{#                  </tr>#}
+{#                  <tr>#}
+{#                      <th>{{ form.clg_name.label }}</th>#}
+{#                      <th>{{ form.clg_name }}</th>#}
+{#                  </tr>#}
+{##}
+{#                  <tr>#}
+{#                      <th>{{ form.dep_name.label }}</th>#}
+{#                      <th>{{ form.dep_name }}</th>#}
+{#                  </tr>#}
+{#                  <tr>#}
+{#                      <th>{{ form.bran_name.label }}</th>#}
+{#                      <th>{{ form.bran_name }}</th>#}
+{#                  </tr>#}
+{#<tr>#}
+{#                      <th>{{ form.stu_name.label }}</th>#}
+{#                      <th>{{ form.stu_name }}</th>#}
+{#                  </tr>#}
+{##}
+{#                    <tr>#}
+{#                      <th>{{ form.subject.label }}</th>#}
+{#                      <th>{{ form.subject }}</th>#}
+{#                  </tr><tr>#}
+{#                      <th>{{ form.time_table.label }}</th>#}
+{#                      <th>{{ form.time_table }}</th>#}
+{#                  </tr>#}
+{#                  <tr>#}
+{#                      {{ ff }}#}
+{#                  </tr>#}
 {#                  <tr >#}
 {#                      <th>{{ form.fee.label }}</th>#}
 {#                      <th>{{ form.fee.coll_fee}}</th>#}
 {#                      <th>{{ form.fee.exam_fee }}</th>#}
 {#                  </tr><tr>#}
 {#                      <th>{{ ff }}</th>#}
-
+{##}
 {#                  </tr>#}
-
+{##}
 {#                 {% endfor %}#}
-
-
-
-                  <tr>
-                      <th>{{ form.result.label }}</th>
-                      <th>{{ form.result }}</th>
-                  </tr>
-
-              </table>
+{##}
+{##}
+{##}
+{#                  <tr>#}
+{#                      <th>{{ form.result.label }}</th>#}
+{#                      <th>{{ form.result }}</th>#}
+{#                  </tr>#}
+{##}
+{#              </table>#}
 
 
             <hr>
