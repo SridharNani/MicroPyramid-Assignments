@@ -27,20 +27,36 @@ urlpatterns = [
     path('',views.showindex,name='main'),
     path('login/',views.login,name='login'),
 
+
+    #signup
     path('lsignup/',views.lectsignup.as_view(),name='lsignup'),
     path('stsignup/', views.studentsignup.as_view(), name='studsignup'),
-    #lecturer
+    path('stfsignup/', views.staffsignup.as_view(), name='staffsignup'),
 
+
+    #lecturer
     path('addlect/',views.addlect,name='addlect'),
     path('lecturer/',views.lecturer,name='lecturer'),
+    path('onelecturer/',views.onelecturer,name='onelect'),
     path('deletelect/<int:id>',views.deletelect,name='deletelect'),
 
-    #Student
 
+    #Student
     path('addstud/',views.addstud,name='addstud'),
     path('student/',views.student,name='student'),
+    path('onestudent/',views.onestudent,name='onestud'),
     path('deletestud/<int:id>',views.deletestud,name='deletestud'),
 
+
+
+    #staff
+    path('addstaff/',views.addataff,name='addstaff'),
+    path('staff/',views.staff,name='staff'),
+    path('onestaff/',views.onestaff,name='onestaff'),
+    path('deletestaff/<int:id>',views.delstaff,name='deletestaff'),
+
+
+    #logout
     path('logout/',views.signout,name='signout')
 ]
 

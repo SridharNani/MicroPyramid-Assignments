@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% include 'index.html' %}
+{% block content %}
+<html>
+<body>
+<br>
+<br>
+<h3 style="text-align: center;background-color: greenyellow;color: white;padding: auto;
+box-sizing: border-box;border: lightslategray">Lecturer  Information</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+        <th scope="col">user</th>
+      <th scope="col">College Name</th>
+      <th scope="col">DepartMent Name</th>
+      <th scope="col">Branch Name</th>
+      <th scope="col">Lecturer Name</th>
+      <th scope="col">Lecturer Salary</th>
+      <th scope="col">Subject</th>
+{#      <th scope="col">Date</th>#}
+      <th scope="col">Time Table</th>
+
+    </tr>
+  </thead>
+
+
+
+  <tbody>
+    <tr>
+        <td>{{ lect.user }}</td>
+      <td>{{ lect.clg_name }}</td>
+      <td>{{ lect.dep_name }}</td>
+      <td>{{ lect.bran_name }}</td>
+      <td>{{ lect.lect_name }}</td>
+      <td>{{ lect.lect_sal }}</td>
+      <td>{{ lect.subject }}</td>
+      <td>{{ lect.time_table.time_start }}-{{ lect.time_table.time_end }}</td>
+
+    </tr>
+  </tbody>
+
+</table>
+{% endblock %}

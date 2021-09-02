@@ -6,10 +6,10 @@
     <div class="row  p-0 mt-4">
       <div class="col-lg-4 mx-auto shadow p-0">
         <div class="alert alert-info">
-          <h2>Add New Lecturer</h2>
+          <h2>Add New Staff</h2>
         </div>
         <div class="p-4">
-          <form action="{% url 'addlect' %}" method="post">
+          <form action="{% url 'addstaff' %}" method="post">
             {% csrf_token %}
             {{ form.as_p }}
             <hr>
@@ -23,7 +23,7 @@
 
 
  <h3 style="text-align: center; color: whitesmoke;background-color: red">
-    <a href="{% url 'lecturer' %}"> Show Lecturer Table</a>
+    <a href="{% url 'staff' %}"> Show Staff Table</a>
 </h3>
 
 

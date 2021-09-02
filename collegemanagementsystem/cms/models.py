@@ -6,9 +6,8 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     is_student=models.BooleanField(default=False)
     is_lecturer=models.BooleanField(default=False)
-    # first_name=models.CharField(max_length=30)
-    # last_name=models.CharField(max_length=30)
-
+    is_staff = models.BooleanField(default=False)
+    # is_admin=models.BooleanField(default=False)
 
 
 class College(models.Model):
@@ -97,12 +96,18 @@ class Student(models.Model):
     def __str__(self):
         return self.stu_name
 
-
+role_choice=(
+    ('Puene','Puene'),
+    ('Attender','Attender'),
+    ('Swepaer','Sweaper'),
+    ('Watchman','Watchman'),
+)
 
 class Staff(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
+    staff_role=models.CharField(max_length=20,choices=role_choice)
     staff_salary = models.OneToOneField(Salary, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -113,7 +118,7 @@ class Lecturer(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
 
 
-    student=models.ForeignKey(Student,on_delete=models.CASCADE)
+    # student=models.ForeignKey(Student,on_delete=models.CASCADE)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
     bran_name = models.ForeignKey(Branch, on_delete=models.CASCADE)

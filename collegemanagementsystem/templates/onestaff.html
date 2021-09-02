@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% include 'index.html' %}
+{% block content %}
+<html>
+<body>
+
+
+<br>
+<br>
+<h3 style="text-align: center;background-color: blueviolet;color: white;padding: auto;
+box-sizing: border-box;border: lightslategray">Staff Information</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+        <th scope="col">user</th>
+      <th scope="col">College Name</th>
+      <th scope="col">Name</th>
+      <th scope="col">Role</th>
+      <th scope="col">Salary</th>
+
+    </tr>
+  </thead>
+
+
+
+  <tbody>
+    <tr>
+        <td>{{ stf.user }}</td>
+      <td>{{ stf.clg_name }}</td>
+      <td>{{ stf.name }}</td>
+      <td>{{ stf.staff_role }}</td>
+      <td>{{ stf.staff_salary }}</td>
+
+    </tr>
+  </tbody>
+
+</table>
+{% endblock %}
