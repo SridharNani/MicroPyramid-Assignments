@@ -56,12 +56,12 @@ def login(request):
             user=authenticate(username=username,password=password)
             if user is not None:
                 loginUser(request,user)
-                # if user.is_admin:
-                #     return redirect('main')
+                if user.is_admin:
+                    return redirect('main')
                 if user.is_lecturer:
-                    return redirect('lecturer')
+                    return redirect('onelect')
                 elif user.is_student:
-                    return redirect('student')
+                    return redirect('onestud')
                 elif user.is_staff:
                     return redirect('onestaff')
                 else:
@@ -79,23 +79,23 @@ def login(request):
 
 # @login_required(login_url='login')
 def addlect(request):
-    # if request.user.is_authenticated:
-    #     user=request.user
-    #     print(user)
+    if request.user.is_authenticated:
         lf=LecturerForm(request.POST)
-        if lf.is_valid():
-            print(lf.cleaned_data)
-            Lecturer=lf.save(commit=False)
-            # Lecturer.user=user
-            Lecturer.save()
-            print(Lecturer)
-            return redirect('lecturer')
+        if request.method=='POST':
+            user=request.user
+            print(user)
+            if lf.is_valid():
+                lf.save()
+                print(Lecturer)
+                return redirect('lecturer')
+            else:
+                return render(request,'addlect.html',context={'form':lf})
         else:
-            return render(request,'addlect.html',context={'form':lf})
+            return render(request, 'addlect.html', context={'form': lf})
+
 
 def lecturer(request):
     lect = Lecturer.objects.all()
-    # stu=Student.objects.all()
     context={'lect':lect}
     return render(request, 'lecturer.html', context)
 
@@ -149,28 +149,29 @@ def onestudent(request):
 
 def addataff(request):
     if request.user.is_authenticated:
-        sf = StaffForm(request.POST)
+        stf = StaffForm(request.POST)
         if request.method == 'POST':
             user = request.user
             print(user)
-            if sf.is_valid():
-                sf.save()
+            if stf.is_valid():
+                stf.save()
                 return redirect('staff')
             else:
-                return render(request, 'addstaff.html', context={'form': sf})
+                return render(request, 'addstaff.html', context={'form': stf})
         else:
-            return render(request, 'addstaff.html', context={'form': sf})
+            return render(request, 'addstaff.html', context={'form': stf})
 
 
 def staff(request):
     stf = Staff.objects.all()
+    print(stf)
     context = {'stf': stf}
     return render(request, 'staff.html', context)
 
 
 def onestaff(request):
-    staff = Staff.objects.get(user_id=request.user.id)
-    context = {'stf': staff}
+    stf = Staff.objects.get(user_id=request.user.id)
+    context = {'stf': stf}
     return render(request, 'onestaff.html', context)
 
 def delstaff(request,id):

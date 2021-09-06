@@ -29,7 +29,8 @@ box-sizing: border-box;border: lightslategray">Staff Information</h3>
       <td>{{ x.name }}</td>
       <td>{{ x.staff_role }}</td>
       <td>{{ x.staff_salary }}</td>
-        <td><a href="/deletelect/{{ x.id }}">🗑️</a></td>
+
+        <td><a href="/deletestaff/{{ x.id }}">🗑️</a></td>
     </tr>
   </tbody>
     {% endfor %}

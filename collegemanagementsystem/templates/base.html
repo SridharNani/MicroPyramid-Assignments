@@ -22,8 +22,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                {% if request.user.is_lecturer %}
-                    <p>Lecturer</p>
+
+                {% if user.is_admin %}
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'addlect' %}">Lecturer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'addstud' %}">Student</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'addstaff' %}">Staff</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'signout' %}">Logout</a>
+                    </li>
+
+                {% elif user.is_lecturer %}
+
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'onelect' %}">Lecturer</a>
                     </li>
@@ -35,7 +52,7 @@
                         <a class="nav-link active" aria-current="page" href="{% url 'signout' %}">Logout</a>
                     </li>
                 {% elif user.is_student %}
-                    <p>Student</p>
+
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'onestud' %}">Student</a>
                     </li>
@@ -43,23 +60,7 @@
                         <a class="nav-link active" aria-current="page" href="{% url 'signout' %}">Logout</a>
                     </li>
 
-                    {% elif user.is_admin %}
-                    <p>Admin</p>
-                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'addstud' %}">Student</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'addlect' %}">Lecturer</a>
-                    </li>
-                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'addstaff' %}">Staff</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'signout' %}">Logout</a>
-                    </li>
-
                 {% elif user.is_staff %}
-                    <p>staff</p>
 
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'onestaff' %}">Staff</a>
@@ -67,15 +68,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'signout' %}">Logout</a>
                     </li>
-
-{#                {% elif user.is_authenticated %}#}
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link active" aria-current="page" href="{% url 'onestud' %}">Student</a>#}
-{#                    </li>#}
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link active" aria-current="page" href="{% url 'signout' %}">Logout</a>#}
-{#                    </li>#}
-
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>

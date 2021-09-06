@@ -7,18 +7,18 @@ class User(AbstractUser):
     is_student=models.BooleanField(default=False)
     is_lecturer=models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    # is_admin=models.BooleanField(default=False)
+    is_admin=models.BooleanField(default=False)
 
 
 class College(models.Model):
-    clg_name = models.CharField(max_length=20, primary_key=True)
+    clg_name = models.CharField(max_length=20)
 
     def __str__(self):
         return self.clg_name
 
 
 class Depart(models.Model):
-    id = models.IntegerField(primary_key=True)
+    # id = models.IntegerField(primary_key=True)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     dep_name = models.CharField(max_length=20)
 
@@ -27,7 +27,7 @@ class Depart(models.Model):
 
 
 class Branch(models.Model):
-    id = models.IntegerField(primary_key=True)
+    # id = models.IntegerField(primary_key=True)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
     bran_name = models.CharField(max_length=20)
@@ -45,7 +45,7 @@ class TimeTable(models.Model):
         return f''
 
 class Salary(models.Model):
-    salary = models.FloatField(max_length=30)
+    salary = models.FloatField(max_length=30,blank=True)
 
     def __str__(self):
         return str(self.salary)
@@ -105,10 +105,10 @@ role_choice=(
 
 class Staff(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
-    clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
+    clg_name = models.ForeignKey(College, blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=20)
     staff_role=models.CharField(max_length=20,choices=role_choice)
-    staff_salary = models.OneToOneField(Salary, on_delete=models.CASCADE)
+    staff_salary = models.ForeignKey(Salary,blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -119,13 +119,13 @@ class Lecturer(models.Model):
 
 
     # student=models.ForeignKey(Student,on_delete=models.CASCADE)
-    clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
-    dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
-    bran_name = models.ForeignKey(Branch, on_delete=models.CASCADE)
+    clg_name = models.ForeignKey(College,blank=True, on_delete=models.CASCADE)
+    dep_name = models.ForeignKey(Depart,blank=True,on_delete=models.CASCADE)
+    bran_name = models.ForeignKey(Branch,blank=True, on_delete=models.CASCADE)
     lect_name = models.CharField(max_length=20)
-    lect_sal=models.ForeignKey(Salary,on_delete=models.CASCADE)
-    subject=models.ForeignKey(Subject,on_delete=models.CASCADE)
-    time_table = models.ForeignKey(TimeTable, on_delete=models.CASCADE)
+    lect_sal=models.ForeignKey(Salary,blank=True,on_delete=models.CASCADE)
+    subject=models.ForeignKey(Subject,blank=True,on_delete=models.CASCADE)
+    time_table = models.ForeignKey(TimeTable,blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.lect_name
