@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% include 'index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div>
+  <div class="container pt-4">
+    <div class="row  p-0 mt-4">
+      <div class="col-lg-4 mx-auto shadow p-0">
+        <div class="alert alert-info">
+          <h2>Add New Branch</h2>
+        </div>
+        <div class="p-4">
+          <form action="{% url 'addbrn' %}" method="post">
+            {% csrf_token %}
+{#            {{ form | crispy}}#}
+              <table>
+                  <tr><th>{{ form.id.label }}</th></tr>
+                  <tr><th>{{ form.id }}</th></tr>
+                  <tr><th>{{ form.clg_name.label }}</th></tr>
+                  <tr><th>{{ form.clg_name }}</th></tr>
+                  <tr><th>{{ form.dep_name.label }}</th></tr>
+                  <tr><th>{{ form.dep_name }}</th></tr>
+                  <tr><th>{{ form.bran_name.label }}</th></tr>
+                  <tr><th>{{ form.bran_name }}</th></tr>
+              </table>
+            <hr>
+            <input type="submit" value="ADD" class="btn btn-info">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ <h3 style="text-align: center; color: whitesmoke;background-color: red">
+    <a href="{% url 'branch' %}"> Show All Branches</a>
+</h3>
+
+
+
+
+{% endblock %}

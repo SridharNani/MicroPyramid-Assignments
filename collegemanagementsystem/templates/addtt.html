@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% include 'index.html' %}
+{% block content %}
+<div>
+  <div class="container pt-4">
+    <div class="row  p-0 mt-4">
+      <div class="col-lg-4 mx-auto shadow p-0">
+        <div class="alert alert-info">
+          <h2>Add New Results</h2>
+        </div>
+        <div class="p-4">
+          <form action="{% url 'addtt' %}" method="post">
+            {% csrf_token %}
+{#            {{ form.as_p }}#}
+              <table>
+                  <tr><th>{{ form.date.label }}</th></tr>
+                  <tr><th>{{ form.date }}</th></tr>
+                  <tr><th>{{ form.time_start.label }}</th></tr>
+                  <tr><th>{{ form.time_start }}</th></tr>
+                   <tr><th>{{ form.time_end.label }}</th></tr>
+                  <tr><th>{{ form.time_end }}</th></tr>
+              </table>
+            <hr>
+            <input type="submit" value="ADD" class="btn btn-info">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ <h3 style="text-align: center; color: whitesmoke;background-color: red">
+    <a href="{% url 'timetable' %}"> Show All Time Tables</a>
+</h3>
+
+
+
+
+{% endblock %}

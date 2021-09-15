@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% include 'index.html' %}
+{% block content %}
+
+    <br>
+    <br>
+
+    <h3 style="text-align: center;background-color: blueviolet;color: white;padding: auto;
+box-sizing: border-box;border: lightslategray">Branch Names</h3>
+
+    <table class="table">
+        {% for x in brn %}
+            <tbody>
+            <tr>
+
+                <td style="text-align: center">{{ x.bran_name }}</td>
+
+            </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+{% endblock %}

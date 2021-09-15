@@ -55,6 +55,40 @@ urlpatterns = [
     path('onestaff/',views.onestaff,name='onestaff'),
     path('deletestaff/<int:id>',views.delstaff,name='deletestaff'),
 
+    #college
+    path('addclg/',views.addclg,name='addclg'),
+    path('college/',views.college,name='college'),
+
+
+    #department
+    path('adddep/',views.adddep,name='adddep'),
+    path('department/',views.department,name='department'),
+
+
+    #Branch
+    path('addbrn/',views.addbrn,name='addbrn'),
+    path('branch/',views.branch,name='branch'),
+
+
+    # subject
+    path('addsub/', views.addsub, name='addsub'),
+    path('subject/', views.subject, name='subject'),
+
+
+    # salary
+    path('addsal/', views.addsal, name='addsal'),
+    path('salary/', views.salary, name='salary'),
+
+
+    #Results
+    path('addres/',views.addres,name='addres'),
+    path('results/',views.results,name='results'),
+
+    #Time Table
+    path('addtt/',views.addtt,name='addtt'),
+    path('timetable/',views.timetable,name='timetable'),
+
+
 
     #logout
     path('logout/',views.signout,name='signout')

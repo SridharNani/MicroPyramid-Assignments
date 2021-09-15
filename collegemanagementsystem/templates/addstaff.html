@@ -1,32 +1,63 @@
 {% extends 'base.html' %}
 {% include 'index.html' %}
 {% block content %}
-<div>
-  <div class="container pt-4">
-    <div class="row  p-0 mt-4">
-      <div class="col-lg-4 mx-auto shadow p-0">
-        <div class="alert alert-info">
-          <h2>Add New Staff</h2>
+    <div>
+        <div class="container pt-4">
+            <div class="row  p-0 mt-4">
+                <div class="col-lg-4 mx-auto shadow p-0">
+                    <div class="alert alert-info">
+                        <h2>Add New Staff</h2>
+                    </div>
+                    <div class="p-4">
+                        <form action="{% url 'addstaff' %}" method="post">
+                            {% csrf_token %}
+                            {#            {{ form.as_p }}#}
+                            <table>
+                                <tr>
+                                    <th>User:<input type="text" id="staff_list" name="staff" required onkeypress="return (event.charCode > 64 &&
+	                                    event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"><br>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>College:{{ form.clg_name }}</th>
+                                </tr>
+                                <tr>
+                                    <th>Name:{{ form.name }}</th>
+                                </tr>
+                                <tr>
+                                    <th>Staff Role:{{ form.staff_role }}</th>
+                                </tr>
+                                <tr>
+                                    <th>Staff Salary:{{ form.staff_salary }}</th>
+                                </tr>
+                            </table>
+                            <hr>
+                            <input type="submit" value="ADD" class="btn btn-info">
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="p-4">
-          <form action="{% url 'addstaff' %}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <hr>
-            <input type="submit" value="ADD" class="btn btn-info">
-          </form>
-        </div>
-      </div>
     </div>
-  </div>
-</div>
 
 
- <h3 style="text-align: center; color: whitesmoke;background-color: red">
-    <a href="{% url 'staff' %}"> Show Staff Table</a>
-</h3>
+    <h3 style="text-align: center; color: whitesmoke;background-color: red">
+        <a href="{% url 'staff' %}"> Show Staff Table</a>
+    </h3>
 
+    <script>
+    $(function () {
+        var stafftags=[
+            {% for staff in staffs %}
+            "{{ staff.user }}",
+            {% endfor %}
+        ];
+        $("#staff_list").autocomplete({
+            source:stafftags
+        });
 
+    });
+    </script>
 
 
 {% endblock %}

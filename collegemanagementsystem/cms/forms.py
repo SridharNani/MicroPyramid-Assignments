@@ -1,4 +1,4 @@
-from .models import Lecturer, Student, User, Staff
+from .models import Lecturer, Student, User, Staff, College,Depart,Branch,Subject,Salary,Results,TimeTable
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
@@ -80,7 +80,39 @@ class StaffForm(forms.ModelForm):
         model = Staff
         fields = '__all__'
 
-# class FeeForm(forms.ModelForm):
-#     class Meta:
-#         model=Fee
-#         fields='__all__'
+class collegeForm(forms.ModelForm):
+    class Meta:
+        model=College
+        fields='__all__'
+
+
+class DepartmentForm(forms.ModelForm):
+    class Meta:
+        model=Depart
+        fields='__all__'
+
+
+class branchForm(forms.ModelForm):
+    class Meta:
+        model=Branch
+        fields='__all__'
+
+class subjectForm(forms.ModelForm):
+    class Meta:
+        model=Subject
+        fields='__all__'
+
+class salaryForm(forms.ModelForm):
+    class Meta:
+        model=Salary
+        fields='__all__'
+
+class ResultForm(forms.ModelForm):
+    class Meta:
+        model=Results
+        fields='__all__'
+
+class TimetableForm(forms.ModelForm):
+    class Meta:
+        model=TimeTable
+        fields='__all__'

@@ -18,7 +18,7 @@ class College(models.Model):
 
 
 class Depart(models.Model):
-    # id = models.IntegerField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     dep_name = models.CharField(max_length=20)
 
@@ -27,7 +27,7 @@ class Depart(models.Model):
 
 
 class Branch(models.Model):
-    # id = models.IntegerField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     clg_name = models.ForeignKey(College, on_delete=models.CASCADE)
     dep_name = models.ForeignKey(Depart, on_delete=models.CASCADE)
     bran_name = models.CharField(max_length=20)
@@ -42,7 +42,7 @@ class TimeTable(models.Model):
 
 
     def __str__(self):
-        return f''
+        return f'{self.date},{self.time_start},{self.time_end}'
 
 class Salary(models.Model):
     salary = models.FloatField(max_length=30,blank=True)
