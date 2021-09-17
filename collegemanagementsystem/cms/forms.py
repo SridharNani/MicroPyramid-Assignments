@@ -6,17 +6,17 @@ from django.db import transaction
 
 class StudentSignupForm(UserCreationForm):
     name = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
+    # email = forms.EmailField(required=True)
 
     class Meta(UserCreationForm.Meta):
         model = User
 
     @transaction.atomic
-    def data_save(self, commit=True):
+    def save(self, commit=True):
         user = super().save(commit=False)
         user.is_student = True
         user.name = self.cleaned_data.get('name')
-        user.email = self.cleaned_data.get('email')
+        # user.email = self.cleaned_data.get('email')
         user.save()
         student = Student.objects.create(user=user)
         student.save()
@@ -43,7 +43,7 @@ class LecturerSignupForm(UserCreationForm):
 
 
 class StaffSignupForm(UserCreationForm):
-    name = forms.CharField(required=True)
+    # name = forms.CharField(required=True)
     role = forms.CharField(required=True)
 
     class Meta(UserCreationForm.Meta):
@@ -53,7 +53,7 @@ class StaffSignupForm(UserCreationForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.is_staff = True
-        user.name = self.cleaned_data.get('name')
+        # user.name = self.cleaned_data.get('name')
         user.role = self.cleaned_data.get('role')
         user.save()
         staff = Staff.objects.create(user=user)
@@ -64,21 +64,22 @@ class StaffSignupForm(UserCreationForm):
 class LecturerForm(forms.ModelForm):
     class Meta:
         model = Lecturer
-        # fields=['clg_name','dep_name','bran_name','lect_name','lect_sal','subject','time_table']
-        fields = '__all__'
+        fields=['clg_name','dep_name','bran_name','lect_name','lect_sal','subject','time_table']
+        # fields = '__all__'
 
 
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
-        fields = '__all__'
-        # fields=['clg_name','dep_name','bran_name','stu_name','subject','time_table','fee','result']
+        # fields = '__all__'
+        fields=['clg_name','dep_name','bran_name','stu_name','subject','time_table','coll_fee','exam_fee','result']
 
 
 class StaffForm(forms.ModelForm):
     class Meta:
         model = Staff
-        fields = '__all__'
+        # fields = '__all__'
+        fields = ['clg_name', 'name','staff_role','staff_salary']
 
 class collegeForm(forms.ModelForm):
     class Meta:

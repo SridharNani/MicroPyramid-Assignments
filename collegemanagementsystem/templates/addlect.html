@@ -11,7 +11,7 @@
                     <div class="p-4">
                         <form action="{% url 'addlect' %}" method="post">
                             {% csrf_token %}
-                            {#            {{ form.as_p }}#}
+{#                                        {{ form.as_p }}#}
                             <table>
                                 <tr>
                                     <th>User:<input type="text" id="lecturer_list" name="lecturer" required onkeypress="return (event.charCode>64&&
@@ -63,7 +63,7 @@
     $(function () {
         var lecturertags=[
             {% for lecturer in lecturers %}
-            "{{ lecturer.user }}",
+            "{{ lecturer.username }}",
             {% endfor %}
         ];
         $("#lecturer_list").autocomplete({

@@ -49,7 +49,7 @@
     $(function () {
         var stafftags=[
             {% for staff in staffs %}
-            "{{ staff.user }}",
+            "{{ staff.username }}",
             {% endfor %}
         ];
         $("#staff_list").autocomplete({

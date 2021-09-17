@@ -16,13 +16,12 @@
 
 
                             {#            {{ form.user }}#}
-                            {#                {{ form }}#}
+{#                                            {{ form }}#}
 
 
                             <table>
                                 <tr>
-                                    <th>User:<input type="text" id="students_list" name="student" required onkeypress="return (event.charCode > 64 &&
-	                                    event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"><br>
+                                    <th>User:<input type="text" id="student_list" name="student" required><br>
                                     </th>
                                 </tr>
                                 <tr>
@@ -49,23 +48,28 @@
                                 </tr>
                                 <tr>
 
-                                    <th>Time Table:{{ form.time_table}}</th>
+                                    <th>Time Table:{{ form.time_table }}</th>
 
                                 </tr>
 
                                 <tr>
-                                    <th>{{ form.fee.label }}</th>
-                                    <th>{{ form.fee.coll_fee }}</th>
-                                    <th>{{ form.fee.exam_fee }}</th>
+
+                                    <th>College Fee:{{ form.coll_fee }}</th>
+
+
                                 </tr>
+                                <tr>
+                                    <th>Exam Fee:{{ form.exam_fee }}</th>
+
+
+                                </tr>
+
                                 <tr>
 
                                     <th>Result:{{ form.result }}</th>
                                 </tr>
 
                             </table>
-
-
                             <hr>
                             <input type="submit" value="ADD" class="btn btn-info">
                         </form>
@@ -81,13 +85,13 @@
 
     <script>
         $(function () {
-            var availableTags = [
+            var studentTags = [
                 {% for student in students %}
-                    "{{student.user}}",
+                    "{{student.username}}",
                 {% endfor %}
             ];
-            $("#students_list").autocomplete({
-                source: availableTags
+            $("#student_list").autocomplete({
+                source: studentTags
             });
         });
     </script>
